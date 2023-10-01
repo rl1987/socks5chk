@@ -13,7 +13,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from __future__ import print_function
 import sys
 if sys.platform == 'win32' and (sys.version_info.major < 3
                                 or (sys.version_info.major == 3 and sys.version_info.minor < 4)):
@@ -29,10 +28,11 @@ def test_tcp(typ, addr, port, user=None, pwd=None):
         # Can be treated identical to a regular socket object
         # Raw HTTP request
         host = "www.baidu.com"
-        req = b"GET / HTTP/1.0\r\nHost: %s\r\n\r\n" % host
+        req = "GET / HTTP/1.0\r\nHost: %s\r\n\r\n" % host
+        req = req.encode('ascii')
         s.connect((host, 80))
         s.send(req)
-        rsp = s.recv(4096)
+        rsp = str(s.recv(4096))
         if rsp.startswith("HTTP/1.1 200 OK"):
             print("TCP check passed")
         else:

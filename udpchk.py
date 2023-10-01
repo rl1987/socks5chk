@@ -13,7 +13,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from __future__ import print_function
 import sys
 if sys.platform == 'win32' and (sys.version_info.major < 3
                                 or (sys.version_info.major == 3 and sys.version_info.minor < 4)):
